@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  page:
+    build:
+      context: ./page
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 7000:7000
+    depends_on:
+      - breedlist
+      - details
+      - pets
+
+  breedlist:
+    build:
+      context: ./breedlist
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 7001:7001
+  
+  details:
+    build:
+      context: ./details
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 7003:7003
+
+  pets:
+    build:
+      context: ./pets
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 7002:7002
+
+

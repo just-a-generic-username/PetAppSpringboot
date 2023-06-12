@@ -1,0 +1,22 @@
+.container {
+  position: relative;
+}
+
+.corner-image {
+  position: absolute;
+  top: 100px; /* Adjust the top position as needed */
+  left: 1000px; /* Adjust the right position as needed */
+}
+
+.corner-image-final {
+  position: absolute;
+  top: 30px; /* Adjust the top position as needed */
+  left: 1000px; /* Adjust the right position as needed */
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust this value as needed */
+}

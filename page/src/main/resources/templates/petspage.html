@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Petspage</title>
+    <link th:href = "@{/css/bootstrap.min.css}" rel = "stylesheet">
+    <link th:href = "@{/css/main.css}" rel = "stylesheet">
+</head>
+<body style="background-color: black">
+<div class = "d-flex justify-content-center align-items-center vh-100">
+    <div class = "row justify-content-center">
+        <div class = "col-auto">
+            <table class ="table table-borderless table-responsive-xxl">
+
+                <thead>
+                <tr>
+                    <th scope = "col" style="color: white">Name</th>
+                    <th scope = "col" style="color: white">Age</th>
+                    <th scope = "col" style="color: white">Gender</th>
+                    <th scope = "col" style="color: white">Size</th>
+                    <th scope = "col" style="color: white">Location</th>
+                    <th scope = "col" style="color: white">Contact Number</th>
+                    <th scope = "col" style="color: white">Contact Email</th>
+                    <th scope = "col" style="color: white">Owner</th>
+                    <th scope = "col" style="color: white">Details</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="pet: ${petslist}">
+                    <td style="color: white" th:text="${pet.name}"></td>
+                    <td style="color: white" th:text="${pet.age}"></td>
+                    <td style="color: white" th:text="${pet.gender}"></td>
+                    <td style="color: white" th:text="${pet.size}"></td>
+                    <td style="color: white" th:text="${pet.location}"></td>
+                    <td style="color: white" th:text="${pet.contactNumber}"></td>
+                    <td style="color: white" th:text="${pet.contactEmail}"></td>
+                    <td style="color: white" th:text="${pet.owner}"></td>
+                    <td style="word-wrap: break-word;min-width: 400px;max-width: 400px;color: white;white-space:normal" th:text="${pet.detail}"></td>
+                </tr>
+                </tbody>
+
+            </table>
+            <div class="corner-image-final">
+                <img th:src="@{/images/petimage.png}" alt="Your Image" width="191" height="200">
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

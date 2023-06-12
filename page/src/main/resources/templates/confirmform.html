@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirm please!</title>
+  <link th:href = "@{/css/bootstrap.min.css}" rel = "stylesheet">
+  <link th:href = "@{/css/main.css}" rel = "stylesheet">
+  <style>
+      .submit-button {
+          color: white;
+      }
+
+      h3 {
+      color: white;
+      }
+
+      .custom-button {
+      background-color: black; /* Replace with your desired color code */
+      color: white; /* Replace with your desired text color */
+      /* Add any additional styling as needed */
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      background-color: black;
+      color: white;
+    }
+  </style>
+</head>
+<body style="background-color: black">
+<div class = "d-flex justify-content-center align-items-center vh-100">
+  <div class = "row justify-content-center">
+    <div class = "col-auto text-center">
+      <h3>Please confirm the name of the breed</h3>
+      <br>
+      <form action="#" th:action="@{/petapp/petpage/getpets}" method="post">
+        <input type="text" name="name" placeholder="">
+        <br>
+        <br>
+        <button class="custom-button" type="submit">I confirm!</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

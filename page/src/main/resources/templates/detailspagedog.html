@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>DetailsPage</title>
+  <link th:href = "@{/css/bootstrap.min.css}" rel = "stylesheet">
+  <link th:href = "@{/css/main.css}" rel = "stylesheet">
+</head>
+<body style="background-color: black">
+<div class = "d-flex justify-content-center align-items-center vh-100">
+  <div class = "row justify-content-center">
+    <div class = "col-auto">
+      <table class ="table table-borderless">
+
+        <thead>
+        <tr>
+          <th scope = "col" style="color: white">id</th>
+          <th scope = "col" style="color: white">Name</th>
+          <th scope = "col" style="color: white">Origin</th>
+          <th scope = "col" style="color: white">Colour</th>
+          <th scope = "col" style="color: white">Life Span</th>
+          <th scope = "col" style="color: white">Weight</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <td style="color: white" th:text="${breeddetails.id}"></td>
+          <td style="color: white" th:text="${breeddetails.name}"></td>
+          <td style="color: white" th:text="${breeddetails.origin}"></td>
+          <td style="color: white" th:text="${breeddetails.colour}"></td>
+          <td style="color: white" th:text="${breeddetails.life_span}"></td>
+          <td style="color: white" th:text="${breeddetails.weight}"></td>
+        </tr>
+        </tbody>
+
+      </table>
+      <div class="corner-image">
+        <img th:src="@{/images/dogimage.png}" alt="Your Image" width="204" height="200">
+      </div>
+      <br>
+      <div class="text-center mt-3">
+        <a href="http://localhost:7000/petapp/petpage/confirmation" style="color: white; text-decoration: none;">Ready for adoption?</a>
+      </div>
+      <br>
+      <div class="text-center mt-3">
+        <a href="http://localhost:7000/petapp/homepage" style="color: white; text-decoration: none;">Maybe another look at the breeds?</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
