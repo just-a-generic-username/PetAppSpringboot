@@ -27,8 +27,25 @@ public class PetsPageController {
         return "confirmform";
     }
 
-    @PostMapping("/getpets")
+    @GetMapping("/getpets")
     public String getBreedsList(@RequestParam("name") String name, Model model) {
+
+        PetDetailsWrapper petDetailsWrapper = new PetDetailsWrapper();
+
+        petDetailsWrapper = webClientBuilder.build()
+                .get()
+                .uri("http://pets:7002/pets/"+name)
+                .retrieve()
+                .bodyToMono(PetDetailsWrapper.class)
+                .block();
+        List<PetDetails> petDetailsList = petDetailsWrapper.getPetDetailsList();
+        model.addAttribute("petslist",petDetailsList);
+        return "petspage";
+
+    }
+
+    @PostMapping("/getpetsform")
+    public String getBreedsListByForm(@RequestParam("name") String name, Model model) {
 
         PetDetailsWrapper petDetailsWrapper = new PetDetailsWrapper();
 

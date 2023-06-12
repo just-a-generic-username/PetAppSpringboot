@@ -23,7 +23,11 @@
 
                     <tbody>
                     <tr th:each="breed: ${breeds}">
-                        <td style="color: white" th:text="${breed.id}"></td>
+                        <td style="color: white">
+                            <a th:href="@{/petapp/detailspage/deets(id=${breed.id})}" style="color: white; text-decoration: none;">
+                                <span th:text="${breed.id}"></span>
+                            </a>
+                        </td>
                         <td style="color: white" th:text="${breed.name}"></td>
                         <td style="color: white" th:text="${breed.type}"></td>
                         <td style="color: white" th:text="${breed.detail}"></td>
@@ -34,6 +38,7 @@
                 <div class="corner-image">
                     <img th:src="@{/images/catimage.jpg}" alt="Your Image" width="167" height="200">
                 </div>
+                <br>
                 <br>
                 <div class="text-center mt-3">
                     <a href="http://localhost:7000/petapp/detailspage/form" style="color: white; text-decoration: none;">Let's go!</a>

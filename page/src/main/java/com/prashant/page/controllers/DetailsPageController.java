@@ -19,22 +19,40 @@ public class DetailsPageController {
         return "form";
     }
 
-    @PostMapping("/deets")
+    @GetMapping("/deets")
     public String getBreedDetails(@RequestParam("id") int id, Model model) {
 
-        BreedDetails breedDetails = new BreedDetails();
-
-        breedDetails = webClientBuilder.build()
+        BreedDetails breedDetails = webClientBuilder.build()
                 .get()
-                .uri("http://details:7003/getdetails/"+id)
+                .uri("http://details:7003/getdetails/" + id)
                 .retrieve()
                 .bodyToMono(BreedDetails.class)
                 .block();
-        model.addAttribute("breeddetails",breedDetails);
 
-        if(id<5) {
+        model.addAttribute("breeddetails", breedDetails);
+
+        if(id < 5) {
             return "detailspagecat";
         }
         return "detailspagedog";
     }
+
+    @PostMapping("/deetsform")
+    public String getBreedDetailsWithForm(@RequestParam("id") int id, Model model) {
+
+        BreedDetails breedDetails = webClientBuilder.build()
+                .get()
+                .uri("http://details:7003/getdetails/" + id)
+                .retrieve()
+                .bodyToMono(BreedDetails.class)
+                .block();
+
+        model.addAttribute("breeddetails", breedDetails);
+
+        if(id < 5) {
+            return "detailspagecat";
+        }
+        return "detailspagedog";
+    }
+
 }
