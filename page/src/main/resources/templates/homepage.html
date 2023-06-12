@@ -28,9 +28,21 @@
                                 <span th:text="${breed.id}"></span>
                             </a>
                         </td>
-                        <td style="color: white" th:text="${breed.name}"></td>
-                        <td style="color: white" th:text="${breed.type}"></td>
-                        <td style="color: white" th:text="${breed.detail}"></td>
+                        <td style="color: white">
+                            <a th:href="@{/petapp/detailspage/deets(id=${breed.id})}" style="color: white; text-decoration: none;">
+                                <span th:text="${breed.name}"></span>
+                            </a>
+                        </td>
+                        <td style="color: white">
+                            <a th:href="@{/petapp/detailspage/deets(id=${breed.id})}" style="color: white; text-decoration: none;">
+                                <span th:text="${breed.type}"></span>
+                            </a>
+                        </td>
+                        <td style="color: white">
+                            <a th:href="@{/petapp/detailspage/deets(id=${breed.id})}" style="color: white; text-decoration: none;">
+                                <span th:text="${breed.detail}"></span>
+                            </a>
+                        </td>
                     </tr>
                     </tbody>
 

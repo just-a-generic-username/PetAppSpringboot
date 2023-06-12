@@ -25,16 +25,36 @@
 
         <tbody>
         <tr>
-          <td style="color: white" th:text="${breeddetails.id}"></td>
+          <td style="color: white">
+            <a th:href="@{/petapp/petpage/getpets(name=${breeddetails.name})}" style="color: white; text-decoration: none;">
+              <span th:text="${breeddetails.id}"></span>
+            </a>
+          </td>
           <td style="color: white">
             <a th:href="@{/petapp/petpage/getpets(name=${breeddetails.name})}" style="color: white; text-decoration: none;">
               <span th:text="${breeddetails.name}"></span>
             </a>
           </td>
-          <td style="color: white" th:text="${breeddetails.origin}"></td>
-          <td style="color: white" th:text="${breeddetails.colour}"></td>
-          <td style="color: white" th:text="${breeddetails.life_span}"></td>
-          <td style="color: white" th:text="${breeddetails.weight}"></td>
+          <td style="color: white">
+            <a th:href="@{/petapp/petpage/getpets(name=${breeddetails.name})}" style="color: white; text-decoration: none;">
+              <span th:text="${breeddetails.origin}"></span>
+            </a>
+          </td>
+          <td style="color: white">
+            <a th:href="@{/petapp/petpage/getpets(name=${breeddetails.name})}" style="color: white; text-decoration: none;">
+              <span th:text="${breeddetails.colour}"></span>
+            </a>
+          </td>
+          <td style="color: white">
+            <a th:href="@{/petapp/petpage/getpets(name=${breeddetails.name})}" style="color: white; text-decoration: none;">
+              <span th:text="${breeddetails.life_span}"></span>
+            </a>
+          </td>
+          <td style="color: white">
+            <a th:href="@{/petapp/petpage/getpets(name=${breeddetails.name})}" style="color: white; text-decoration: none;">
+              <span th:text="${breeddetails.weight}"></span>
+            </a>
+          </td>
         </tr>
         </tbody>
 
