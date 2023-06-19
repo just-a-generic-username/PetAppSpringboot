@@ -5,51 +5,102 @@
     <title>Homepage</title>
     <link th:href = "@{/css/bootstrap.min.css}" rel = "stylesheet">
     <link th:href = "@{/css/main.css}" rel = "stylesheet">
+    <style>
+        .container {
+            padding-top: 50px; /* Adjust this value to move the content higher */
+        }
+        .table {
+            margin-top: 20px; /* Adjust this value to fine-tune the table positioning */
+        }
+
+        @keyframes slideUp {
+          0% {
+            transform: translateY(10px);
+            opacity: 0;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+
+        .animate-slide-up {
+          animation: slideUp 1s ease-in-out;
+        }
+        .table-container {
+            max-height: 400px; /* Adjust the height as needed */
+            overflow-y: auto;
+        }
+        /* width */
+        ::-webkit-scrollbar {
+          width: 10px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+          background: black;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+          background: white;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+          background: slategrey;
+        }
+    </style>
 </head>
-<body style="background-color: black">
+<body style="background-color: black" class="animate-slide-up">
     <div class = "d-flex justify-content-center align-items-center vh-100">
         <div class = "row justify-content-center">
             <div class = "col-auto">
-                <table class ="table table-borderless">
 
-                    <thead>
-                    <tr>
-                        <th scope = "col" style="color: white">id</th>
-                        <th scope = "col" style="color: white">Name</th>
-                        <th scope = "col" style="color: white">Type</th>
-                        <th scope = "col" style="color: white">Details</th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    <tr th:each="breed: ${breeds}">
-                        <td style="color: white">
-                            <a th:href="@{/petapp/detailspage/deets(id=${breed.id})}" style="color: white; text-decoration: none;">
-                                <span th:text="${breed.id}"></span>
-                            </a>
-                        </td>
-                        <td style="color: white">
-                            <a th:href="@{/petapp/detailspage/deets(id=${breed.id})}" style="color: white; text-decoration: none;">
-                                <span th:text="${breed.name}"></span>
-                            </a>
-                        </td>
-                        <td style="color: white">
-                            <a th:href="@{/petapp/detailspage/deets(id=${breed.id})}" style="color: white; text-decoration: none;">
-                                <span th:text="${breed.type}"></span>
-                            </a>
-                        </td>
-                        <td style="color: white">
-                            <a th:href="@{/petapp/detailspage/deets(id=${breed.id})}" style="color: white; text-decoration: none;">
-                                <span th:text="${breed.detail}"></span>
-                            </a>
-                        </td>
-                    </tr>
-                    </tbody>
-
-                </table>
-                <div class="corner-image">
+                <div class="landingimage">
                     <img th:src="@{/images/catimage.jpg}" alt="Your Image" width="167" height="200">
                 </div>
+
+                <br>
+                    <div class="table-container">
+                        <table class ="table table-borderless table-responsive">
+
+                            <thead>
+                            <tr>
+                                <th scope = "col" style="color: white">id</th>
+                                <th scope = "col" style="color: white">Name</th>
+                                <th scope = "col" style="color: white">Type</th>
+                                <th scope = "col" style="color: white">Details</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr th:each="breed: ${breeds}">
+                                <td style="color: white">
+                                    <a th:href="@{/petapp/detailspage/deets(id=${breed.id})}" style="color: white; text-decoration: none;">
+                                        <span th:text="${breed.id}"></span>
+                                    </a>
+                                </td>
+                                <td style="color: white">
+                                    <a th:href="@{/petapp/detailspage/deets(id=${breed.id})}" style="color: white; text-decoration: none;">
+                                        <span th:text="${breed.name}"></span>
+                                    </a>
+                                </td>
+                                <td style="color: white">
+                                    <a th:href="@{/petapp/detailspage/deets(id=${breed.id})}" style="color: white; text-decoration: none;">
+                                        <span th:text="${breed.type}"></span>
+                                    </a>
+                                </td>
+                                <td style="color: white">
+                                    <a th:href="@{/petapp/detailspage/deets(id=${breed.id})}" style="color: white; text-decoration: none;">
+                                        <span th:text="${breed.detail}"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
                 <br>
                 <br>
                 <div class="text-center mt-3">
@@ -58,6 +109,13 @@
             </div>
         </div>
     </div>
-
+<!--This script hides the overflow of the page. If there is more content than present currently, comment it out and add in
+some styling to the scroll bar. One alternative would be to put the table in a div, set a max height to it and style the scroll
+bar for noice style-->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.documentElement.style.overflow = 'hidden';
+});
+</script>
 </body>
 </html>

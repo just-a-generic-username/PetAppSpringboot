@@ -4,19 +4,23 @@
 
 .corner-image {
   position: absolute;
-  top: 100px; /* Adjust the top position as needed */
-  left: 1000px; /* Adjust the right position as needed */
+  top: 100px;
+  left: 1000px;
 }
 
 .corner-image-final {
   position: absolute;
-  top: 30px; /* Adjust the top position as needed */
-  left: 1000px; /* Adjust the right position as needed */
+  top: 30px;
+  left: 1000px;
 }
 
 .table-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Adjust this value as needed */
+  height: 100vh;
+}
+
+.landingimage {
+    text-align: center;
 }

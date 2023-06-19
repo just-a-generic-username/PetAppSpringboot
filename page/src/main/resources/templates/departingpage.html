@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Departing Page</title>
+  <link th:href = "@{/css/bootstrap.min.css}" rel = "stylesheet">
+  <link th:href = "@{/css/main.css}" rel = "stylesheet">
+  <style>
+    h2 {
+      font-family: georgia, serif;
+      font-style: italic;
+      color: white;
+    }
+    @keyframes slideUp {
+      0% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .animate-slide-up {
+      animation: slideUp 1s ease-in-out;
+    }
+  </style>
+</head>
+<body style="background-color: black" class="animate-slide-up">
+<div class = "d-flex justify-content-center align-items-center vh-100">
+  <div class = "row justify-content-center">
+    <div class = "col-auto">
+
+      <div class="text-center">
+        <h2>Adoption is not the call to have the perfect rosy family.</h2>
+        <h2>It is the call to give love, mercy and patience.</h2>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="popupModal" tabindex="-1" aria-labelledby="popupModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="popupModalLabel">Thank you!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>With a great pet comes great responsibility, and we hope you shower your pet with nothing but love, care and affection.</p>
+        <p>Happy pet parenting!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const popupModal = new bootstrap.Modal(document.getElementById('popupModal'));
+    popupModal.show();
+  });
+</script>
+</body>
+</html>

@@ -5,12 +5,40 @@
     <title>Petspage</title>
     <link th:href = "@{/css/bootstrap.min.css}" rel = "stylesheet">
     <link th:href = "@{/css/main.css}" rel = "stylesheet">
+    <style>
+        .container {
+            padding-top: 50px; /* Adjust this value to move the content higher */
+        }
+        .table {
+            margin-top: 20px; /* Adjust this value to fine-tune the table positioning */
+        }
+
+        @keyframes slideUp {
+          0% {
+            transform: translateY(20px);
+            opacity: 0;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+
+        .animate-slide-up {
+          animation: slideUp 1s ease-in-out;
+        }
+    </style>
 </head>
-<body style="background-color: black">
+<body style="background-color: black" class="animate-slide-up">
 <div class = "d-flex justify-content-center align-items-center vh-100">
     <div class = "row justify-content-center">
         <div class = "col-auto">
-            <table class ="table table-borderless table-responsive-xxl">
+
+            <div class="landingimage" style="margin-bottom: 50px;">
+                <img th:src="@{/images/petimage.jpeg}" alt="Your Image" width="220" height="200">
+            </div>
+
+            <table class ="table table-borderless table-responsive-xxl" style="margin-bottm: 150px;">
 
                 <thead>
                 <tr>
@@ -28,25 +56,63 @@
 
                 <tbody>
                 <tr th:each="pet: ${petslist}">
-                    <td style="color: white" th:text="${pet.name}"></td>
-                    <td style="color: white" th:text="${pet.age}"></td>
-                    <td style="color: white" th:text="${pet.gender}"></td>
-                    <td style="color: white" th:text="${pet.size}"></td>
-                    <td style="color: white" th:text="${pet.location}"></td>
-                    <td style="color: white" th:text="${pet.contactNumber}"></td>
-                    <td style="color: white" th:text="${pet.contactEmail}"></td>
-                    <td style="color: white" th:text="${pet.owner}"></td>
-                    <td style="word-wrap: break-word;min-width: 400px;max-width: 400px;color: white;white-space:normal" th:text="${pet.detail}"></td>
+                    <td style="color: white">
+                        <a th:href="@{/petapp/departing}" style="color: white; text-decoration: none;">
+                            <span th:text="${pet.name}"></span>
+                        </a>
+                    </td>
+                    <td style="color: white">
+                        <a th:href="@{/petapp/departing}" style="color: white; text-decoration: none;">
+                            <span th:text="${pet.age}"></span>
+                        </a>
+                    </td>
+                    <td style="color: white">
+                        <a th:href="@{/petapp/departing}" style="color: white; text-decoration: none;">
+                            <span th:text="${pet.gender}"></span>
+                        </a>
+                    </td>
+                    <td style="color: white">
+                        <a th:href="@{/petapp/departing}" style="color: white; text-decoration: none;">
+                            <span th:text="${pet.size}"></span>
+                        </a>
+                    </td>
+                    <td style="color: white">
+                        <a th:href="@{/petapp/departing}" style="color: white; text-decoration: none;">
+                            <span th:text="${pet.location}"></span>
+                        </a>
+                    </td>
+                    <td style="color: white">
+                        <a th:href="@{/petapp/departing}" style="color: white; text-decoration: none;">
+                            <span th:text="${pet.contactNumber}"></span>
+                        </a>
+                    </td>
+                    <td style="color: white">
+                        <a th:href="@{/petapp/departing}" style="color: white; text-decoration: none;">
+                            <span th:text="${pet.contactEmail}"></span>
+                        </a>
+                    </td>
+                    <td style="color: white">
+                        <a th:href="@{/petapp/departing}" style="color: white; text-decoration: none;">
+                            <span th:text="${pet.owner}"></span>
+                        </a>
+                    </td>
+                    <td style="word-wrap: break-word;min-width: 400px;max-width: 400px;color: white;white-space:normal">
+                        <a th:href="@{/petapp/departing}" style="color: white; text-decoration: none;">
+                            <span th:text="${pet.detail}"></span>
+                        </a>
+                    </td>
+
                 </tr>
                 </tbody>
 
             </table>
-            <div class="corner-image-final">
-                <img th:src="@{/images/petimage.png}" alt="Your Image" width="191" height="200">
-            </div>
         </div>
     </div>
 </div>
-
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.documentElement.style.overflow = 'hidden';
+});
+</script>
 </body>
 </html>

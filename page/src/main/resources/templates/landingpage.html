@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Landing Page</title>
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/css/main.css}" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+    }
+
+    @keyframes slideUp {
+      0% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .animate-slide-up {
+      animation: slideUp 1s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <div class="text-center animate-slide-up">
+        <h1 style="color: white;margin-bottom: 2em">Get-a-Pet</h1>
+      </div>
+      <div class="landingimage animate-slide-up">
+        <img th:src="@{/images/dogcat.jpg}" alt="Your Image" width="auto" height="400">
+      </div>
+      <br>
+      <div class="text-center animate-slide-up">
+        <h3 style="color: white">Are you ready to bring home a bundle of joy?</h3>
+      </div>
+      <br>
+      <br>
+      <div class="text-center mt-3 animate-slide-up">
+        <a href="http://localhost:7000/petapp/homepage" style="color: white; text-decoration: none;">Let's look at all the breeds first!</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
