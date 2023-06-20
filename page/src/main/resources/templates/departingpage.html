@@ -55,6 +55,10 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
       </div>
+      <div class="light-theme-toggle">
+        <input type="checkbox" id="toggleSwitch" onclick="toggleColors()" />
+        <label for="toggleSwitch"></label>
+      </div>
     </div>
   </div>
 </div>
@@ -66,6 +70,16 @@
     const popupModal = new bootstrap.Modal(document.getElementById('popupModal'));
     popupModal.show();
   });
+</script>
+<script>
+  function toggleColors() {
+    document.body.classList.toggle("invert-colors");
+    if (document.body.classList.contains("invert-colors")) {
+      document.body.style.backgroundColor = "white";
+    } else {
+      document.body.style.backgroundColor = "black";
+    }
+  }
 </script>
 </body>
 </html>

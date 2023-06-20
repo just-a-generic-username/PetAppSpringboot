@@ -93,9 +93,22 @@
       <div class="text-center mt-3">
         <a href="http://localhost:7000/petapp/homepage" style="color: white; text-decoration: none;">Maybe another look at the breeds?</a>
       </div>
+      <div class="light-theme-toggle">
+        <input type="checkbox" id="toggleSwitch" onclick="toggleColors()" />
+        <label for="toggleSwitch"></label>
+      </div>
     </div>
   </div>
 </div>
-
+<script>
+  function toggleColors() {
+    document.body.classList.toggle("invert-colors");
+    if (document.body.classList.contains("invert-colors")) {
+      document.body.style.backgroundColor = "white";
+    } else {
+      document.body.style.backgroundColor = "black";
+    }
+  }
+</script>
 </body>
 </html>

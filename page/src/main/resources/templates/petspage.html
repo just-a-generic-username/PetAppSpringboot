@@ -106,6 +106,10 @@
                 </tbody>
 
             </table>
+            <div class="light-theme-toggle">
+                <input type="checkbox" id="toggleSwitch" onclick="toggleColors()" />
+                <label for="toggleSwitch"></label>
+            </div>
         </div>
     </div>
 </div>
@@ -113,6 +117,16 @@
 document.addEventListener('DOMContentLoaded', function() {
     document.documentElement.style.overflow = 'hidden';
 });
+</script>
+<script>
+  function toggleColors() {
+    document.body.classList.toggle("invert-colors");
+    if (document.body.classList.contains("invert-colors")) {
+      document.body.style.backgroundColor = "white";
+    } else {
+      document.body.style.backgroundColor = "black";
+    }
+  }
 </script>
 </body>
 </html>

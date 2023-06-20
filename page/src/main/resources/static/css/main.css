@@ -24,3 +24,45 @@
 .landingimage {
     text-align: center;
 }
+
+.invert-colors {
+      filter: invert(100%);
+    }
+
+.light-theme-toggle {
+    position: absolute;
+    top: 2vh;
+    right: 2vh;
+}
+
+.light-theme-toggle label {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  background-color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.light-theme-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.light-theme-toggle label:before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background-color: black;
+  border-radius: 50%;
+  transition: transform 0.2s ease-in-out;
+}
+
+.light-theme-toggle input:checked + label:before {
+  transform: translateX(20px);
+}
