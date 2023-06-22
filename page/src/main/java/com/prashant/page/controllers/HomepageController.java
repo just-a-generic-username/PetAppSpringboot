@@ -36,4 +36,21 @@ public class HomepageController {
 
     }
 
+    @GetMapping("/homepage2")
+    public String getBreedsList2(Model model) {
+
+        BreedsWrapper breedsWrapper = new BreedsWrapper();
+
+        breedsWrapper = webClientBuilder.build()
+                .get()
+                .uri("http://breedlist:7001/breeds/getall")
+                .retrieve()
+                .bodyToMono(BreedsWrapper.class)
+                .block();
+        List<Breeds> breedsList = breedsWrapper.getBreedsWrapper();
+        model.addAttribute("breeds",breedsList);
+        return "homepage2";
+
+    }
+
 }

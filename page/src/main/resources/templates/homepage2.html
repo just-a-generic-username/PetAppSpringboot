@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+  <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+  <script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <link th:href="@{/css/card-style.css}" rel="stylesheet" />
+  <link th:href="@{/css/index.css}" rel="stylesheet" />
+
+
+  <!-- NavBar -->
+  <link th:href="@{/css/nav-bar.css}" rel="stylesheet" />
+
+  <!-- Footer -->
+  <link rel="icon" th:href="@{/images/logos/logo.png}" />
+  <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"></script>
+
+  <script th:inline="javascript">
+    var breeds = /*[[${breeds}]]*/,
+      selectedBreed, catBreeds = [], dogBreeds = [], type = localStorage.getItem('pet-type') || 'cat';
+  </script>
+</head>
+
+<body>
+<div class="navBar" style="background-color: black;">
+  <div style="display: flex; align-items: center; flex-grow: 1;">
+    <a th:href="@{/petapp/landing}" data-bs-toggle="tooltip" title="HomePage" data-bs-placement="bottom"><img id="nav-home-image" class="logoCont"
+                                                                                              th:src="@{/images/logos/logo.png}" /></a>
+    <h1>
+      PetApp
+    </h1>
+  </div>
+  <h4 id="nav-breed-type" style="flex-grow:1;"></h4>
+  <div id="pet-selector-parent">
+    <div style="display: flex; align-items: center;">
+      <button id="pet-select-cat" class="petSelect" data-bs-toggle="tooltip" title="Cats" data-bs-placement="bottom">
+        <img th:src="@{/images/logos/cat_selector.png}" style="height: 40px; width: 40px;" />
+      </button>
+      <button id="pet-select-dog" class="petSelectActive" data-bs-toggle="tooltip" title="Dogs" data-bs-placement="bottom">
+        <img th:src="@{/images/logos/dog_selector.png}" style="height: 40px; width: 40px;" />
+      </button>
+    </div>
+    <script th:inline="javascript">
+      function parseBreed() {
+        for (let breed of breeds) {
+          if (breed.type == 'cat')
+            catBreeds.push(breed);
+          else
+            dogBreeds.push(breed);
+        }
+      }
+      parseBreed();
+    </script>
+  </div>
+</div>
+
+<div id="cards_landscape_wrap-2" style="flex: 1;">
+  <div class="container h-auto">
+    <div id="breed-row" class="row"></div>
+    <!-- Pets selection -->
+    <script th:inline="javascript">
+      function setBreedType(type) {
+        switch (type) {
+          case 'cat':
+            selectedBreed = catBreeds;
+            break;
+          case 'dog':
+            selectedBreed = dogBreeds;
+            break;
+        }
+        $('#breed-row').empty();
+        selectedBreed.forEach((breed) => {
+          $('#breed-row').append(`
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <a href="./breed?breed_id=${breed.id}">
+                    <div class="card-flyer">
+                        <div class="text-box">
+                            <div class="image-box">
+                                <img style="object-fit: cover; object-position: top" src="/images/breeds/${breed.id}.jpg" />
+                            </div>
+                            <div class="text-container">
+                                <h6>
+                                    ${breed.name}
+                                </h6>
+                                <p>
+                                    ${breed.detail}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            `)
+        });
+
+        //Setting local storage
+        localStorage.setItem('pet-type', type);
+
+        //Toggling selector state
+
+        $('#pet-select-cat').attr("class", type == "cat" ? "petSelectActive" : "petSelect");
+        $('#pet-select-dog').attr("class", type == "dog" ? "petSelectActive" : "petSelect");
+
+        //Setting Nav Header
+        $('#nav-breed-type').empty().append(`${type == 'cat' ? "Cat" : "Dog"} Breeds`)
+      }
+      setBreedType(localStorage.getItem('pet-type') || "cat");
+
+      $('#pet-select-cat').click(function () {
+        setBreedType('cat');
+      })
+
+      $('#pet-select-dog').click(function () {
+        setBreedType('dog');
+      })
+    </script>
+  </div>
+</div>
+
+<!-- Site footer -->
+<footer id="footer" style="display: flex; align-items: center;">
+  <img th:src="@{/images/logos/oracle.png}" style="height: 20px; width: 30px; margin-right: 10px;" />
+  <div style="flex: 1;">
+    A sample app to demonstrate OCI service mesh
+  </div>
+  <div style="display: flex; align-items:baseline;">
+    <h6 style="margin-right: 10px;">Breed List</h6>
+    <div class="btn-group">
+      <a class="btn btn-primary active">HTTP</a>
+    </div>
+  </div>
+</footer>
+</body>
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  (function () {
+    'use strict';
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation');
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms).forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  })();
+
+  // Bootstrap tooltip
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+  /*]]>*/
+</script>
+<style>
+  .imageCont {
+    height: 200px;
+    width: 200px;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  a {
+    font-size: x-large;
+  }
+
+  .navBar {
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 100%;
+    height: 80px;
+    background-size: cover;
+    background-color: black;
+    opacity: 0.8;
+    background-position: center;
+    color: white;
+    display: flex;
+    align-items: center;
+  }
+
+  footer {
+    height: 75px;
+    background-color: black;
+    opacity: 0.8;
+    color: white;
+    padding: 40px;
+  }
+
+  .bodyCont {
+    padding-top: 10px;
+    margin-bottom: -40px;
+    display: flex;
+    padding-left: 20px;
+  }
+
+
+  .logoCont {
+    height: 40px;
+    width: 40px;
+    margin: 20px;
+  }
+
+  .petSelect {
+    height: 70px;
+    width: 70px;
+    border-radius: 35px;
+    background-color: black;
+    border-width: 0px;
+  }
+
+  .petSelectActive {
+    height: 70px;
+    width: 70px;
+    border-radius: 35px;
+    background-color: black;
+    border-color: white;
+    border-width: 5px;
+  }
+</style>
+
+</html>

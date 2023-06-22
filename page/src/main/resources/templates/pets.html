@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <link href="./static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./static/styles/index.css" rel="stylesheet">
+  <script src="./static/scripts/jquery.js"></script>
+  <script src="./static/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- NavBar -->
+  <link href='./static/styles/pets/nav-bar.css' rel='stylesheet' />
+  <link rel="icon" href="./static/logos/logo.png" />
+
+  <script>
+    	var pet_type = localStorage.getItem('pet-type') || "cat";
+	</script>
+</head>
+
+<body>
+<div class="navBar">
+  <div style=" display: flex; align-items:center; flex: 1;">
+    <a href='../'><img class="logoCont" src="./static/logos/logo.png" data-bs-toggle="tooltip" title="HomePage"
+                       data-bs-placement="bottom" /></a>
+    <h1 style="margin-right: 10px;">
+      <%=details && details.name%>
+    </h1>
+  </div>
+  <div style="display: flex; align-items: center; margin-right: 20px;">
+    <div style="display: flex; font-size: 1.2rem; margin-left: auto;">
+      <img src="./static/images/breeds/<%=details.id%>.jpg" class="breedImage" />
+      <div class="navBarItem" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
+           title="<%=details.origin%>">
+        ORIGIN
+      </div>
+      <div class="navBarItem" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
+           title="<%=details.color%>">
+        COLOR
+      </div>
+      <div class="navBarItem" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
+           title="<%=details.life_span%>">
+        LIFESPAN
+      </div>
+      <% if(details && details.weight) {%>
+      <div class="navBarItem" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
+           title="<%=details.weight%>">
+        WEIGHT
+      </div>
+      <%}%>
+    </div>
+  </div>
+
+</div>
+
+<div class="bodyCont" style="flex-grow: 1;">
+  <% pets && pets.forEach(function(cat,index){ %>
+  <div class="card border-dark shadow p-3 mb-5 rounded "
+       style="width: 360px; margin-right: 10px; margin-left: 10px;">
+    <div class="card-header">
+      <div style="display: flex; align-items: center;">
+        <div style="display: flex; align-items: center; margin-right: 10px;">
+          <img class="petTypeLogo" style="height: 20px; width: 20px;" />
+          <script>
+                            	$(".petTypeLogo").attr("src", `./static/logos/${pet_type}_selector.png`)
+                        	</script>
+        </div>
+        <div style="flex: 1;">
+          <h3>
+            <%= cat.name %>
+          </h3>
+        </div>
+        <div style="display: flex;  align-items:baseline; white-space: nowrap; overflow-x: hidden;">
+          <img src='./static/logos/location.png' class="locationLogo" />
+          <h6>
+            <%= cat.location %>
+          </h6>
+        </div>
+      </div>
+    </div>
+    <img class="card-img-top catImage" src="./static/images/pets/<%=details&&details.id%>_<%=index+1%>.jpg"
+         alt="Card image cap" style="height: 180px;">
+    <div class="card-body" style="margin-bottom: -20px;">
+      <div style="display: flex; align-items: center;">
+        <div style="flex: 1;">
+                        	<span class="badge rounded-pill bg-danger">
+                            	<%= cat.age %>
+                        	</span>
+          <span class="badge rounded-pill bg-danger">
+                            	<%= cat.gender %>
+                        	</span>
+          <span class="badge rounded-pill bg-danger">
+                            	<%= cat.size %>
+                        	</span>
+        </div>
+        <div>
+          <a tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Email"
+             data-bs-content="<%=cat.contact && cat.contact.email%>" data-bs-placement="top">
+            <img src="./static/logos/email.png" class="contactLogo" />
+          </a>
+        </div>
+        <div>
+          <a tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Phone"
+             data-bs-content="<%=cat.contact && cat.contact.phone%>" data-bs-placement="top">
+            <img src="./static/logos/phone-call.png" class="contactLogo" />
+          </a>
+        </div>
+      </div>
+      <div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div style="display: flex; align-items: center;">
+              <div style="flex: 1;">
+                <h5>
+                  <%= cat.owner %>
+                </h5>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <div class="accordion accordion-flush" id="accordian-<%=index%>">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-<%=index%>-details-heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#flush-<%=index%>-details-collapse" aria-expanded="false"
+                      aria-controls="flush-<%=index%>-details-collapse">
+                Details
+              </button>
+            </h2>
+            <div id="flush-<%=index%>-details-collapse" class="accordion-collapse collapse"
+                 aria-labelledby="flush-<%=index%>-details-heading"
+                 data-bs-parent="#accordian-<%=index%>">
+              <div class="accordion-body">
+                <%= cat.detail %>
+              </div>
+            </div>
+          </div>
+          <%if(cat.health){%>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-<%=index%>-health-heading">
+              <button class="accordion-button collapsed" type="button"
+                      data-bs-toggle="collapse" data-bs-target="#flush-<%=index%>-health-collapse"
+                      aria-expanded="false" aria-controls="flush-<%=index%>-health-collapse">
+                Health
+              </button>
+            </h2>
+            <div id="flush-<%=index%>-health-collapse" class="accordion-collapse collapse"
+                 aria-labelledby="flush-<%=index%>-health-heading"
+                 data-bs-parent="#accordian-<%=index%>">
+              <div class="accordion-body">
+                <%= cat.health.status %> <br />
+                <div style="margin-top: 10px;">
+                  <h6>Health Point</h6>
+                </div>
+                <div class="progress" style="margin-top: 5px;">
+                  <div class="progress-bar bg-success" role="progressbar"
+                       style="width: <%=cat.health.points%>0%;"
+                       aria-valuenow="<%=cat.health.points%>0" aria-valuemin="0"
+                       aria-valuemax="100">
+                    <%=cat.health.points%>/10
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%}%>
+          <%if(cat.adoption){%>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-<%=index%>-adoption-heading">
+              <button class="accordion-button collapsed" type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#flush-<%=index%>-adoption-collapse"
+                      aria-expanded="false"
+                      aria-controls="flush-<%=index%>-adoption-collapse">
+                Adoption
+              </button>
+            </h2>
+            <div id="flush-<%=index%>-adoption-collapse"
+                 class="accordion-collapse collapse"
+                 aria-labelledby="flush-<%=index%>-adoption-heading"
+                 data-bs-parent="#accordian-<%=index%>">
+              <div class="accordion-body">
+                <%= cat.adoption %>
+              </div>
+            </div>
+          </div>
+          <%}%>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+</div>
+
+<div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Enter Credentials</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form class="needs-validation" action="/auth/login" method="POST" novalidate>
+        <div class="modal-body">
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon1">@</span>
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                   aria-describedby="basic-addon1" name="username" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div class="invalid-feedback">
+              Please enter a username.
+            </div>
+          </div>
+          <div style="margin-top: 10px; ">
+            <input type="password" placeholder="Password" class="form-control" id="inputPassword"
+                   name="password" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div class="invalid-feedback">
+              Please choose a password.
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button id="login-submit" type="submit" class="btn btn-primary">Login</button>
+        </div>
+      </form>
+
+
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer" style="display: flex; align-items: center;">
+  <img src="./static/logos/oracle.png" style="height: 20px; width: 30px; margin-right: 10px;" />
+  <div style="flex: 1;">
+    A sample app to demonstrate OCI service mesh
+  </div>
+  <div style="display: flex;">
+    <div style="margin-right: 20px;">
+      <button id="reset-local-storage" type="button" class="btn btn-outline-primary">Reset</button>
+    </div>
+    <div style="display: flex; align-items: baseline;">
+      <div id="pets_tooltip" style="margin-right: 10px;" type="button" data-bs-toggle="tooltip"
+           data-bs-placement="bottom">
+        <h6>Pets <%=pets_version%>
+        </h6>
+      </div>
+      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="pets_protocol" id="pets_http" value="pets_http"
+               autocomplete="off" <%=!grpc_pets && 'checked' %>>
+        <label class="btn btn-outline-primary" for="pets_http">HTTP</label>
+
+        <input type="radio" class="btn-check" name="pets_protocol" id="pets_grpc" value="pets_grpc"
+               autocomplete="off" <%=grpc_pets && 'checked' %>>
+        <label class="btn btn-outline-primary" for="pets_grpc">GRPC</label>
+      </div>
+    </div>
+    <div style="display: flex; align-items: baseline; margin-left: 20px;">
+      <div id="details_tooltip" style="margin-right: 10px;" type="button" data-bs-toggle="tooltip"
+           data-bs-placement="bottom">
+        <h6>Details <%=details_version%>
+        </h6>
+      </div>
+      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="details_protocol" id="details_http" value="details_http"
+               autocomplete="off" <%=!grpc_details && 'checked' %>>
+        <label class="btn btn-outline-primary" for="details_http">HTTP</label>
+
+        <input type="radio" class="btn-check" name="details_protocol" id="details_grpc" value="details_grpc"
+               autocomplete="off" <%=grpc_details && 'checked' %>>
+        <label class="btn btn-outline-primary" for="details_grpc">GRPC</label>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+
+<script>
+    	(function () {
+        	'use strict'
+        	// Fetch all the forms we want to apply custom Bootstrap validation styles to
+        	var forms = document.querySelectorAll('.needs-validation')
+        	// Loop over them and prevent submission
+        	Array.prototype.slice.call(forms)
+            	.forEach(function (form) {
+                	form.addEventListener('submit', function (event) {
+                    	if (!form.checkValidity()) {
+                        	event.preventDefault()
+                        	event.stopPropagation()
+                    	}
+
+                    	form.classList.add('was-validated')
+                	}, false)
+            	})
+    	})()
+</script>
+<style>
+	body {
+    	display: flex;
+    	flex-direction: column;
+    	height: 100vh;
+	}
+
+	.logoCont {
+    	height: 40px;
+    	width: 40px;
+    	margin-left: 20px;
+    	margin-right: 20px;
+	}
+
+	.circleLogo {
+    	height: 10px;
+    	width: 10px;
+	}
+
+	.locationLogo {
+    	height: 20px;
+    	width: 20px;
+    	margin: 10px;
+	}
+
+	.contactLogo {
+    	height: 30px;
+    	width: 30px;
+    	margin: 10px;
+	}
+
+	.bodyCont {
+    	padding-top: 10px;
+    	margin-bottom: -40px;
+    	display: flex;
+    	padding-left: 20px;
+	}
+
+	.catImage {
+    	height: 20rem;
+    	object-fit: cover;
+	}
+
+	.catDetailText {
+    	height: 100px;
+    	overflow-y: scroll;
+	}
+
+	.navBarItem {
+    	margin: 10px;
+	}
+
+	.breedImage {
+    	height: 50px;
+    	width: 50px;
+    	border-radius: 25px;
+    	margin-right: 20px;
+	}
+
+	.navBar {
+    	width: 100%;
+    	padding: 10px;
+    	background-size: cover;
+    	background-color: black;
+    	opacity: 0.8;
+    	background-position: center;
+    	color: white;
+    	display: flex;
+    	align-items: center;
+	}
+
+	footer {
+    	height: 75px;
+    	background-color: black;
+    	opacity: 0.8;
+    	color: white;
+    	padding: 40px;
+	}
+</style>
+
+<script>
+	var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+	var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    	return new bootstrap.Tooltip(tooltipTriggerEl)
+	})
+	var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+	var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    	return new bootstrap.Popover(popoverTriggerEl)
+	});
+	var popover = new bootstrap.Popover(document.querySelector('.example-popover'), {
+    	container: 'body'
+	});
+</script>
+<!-- Managing footer protocol selection -->
+<script>
+	var grpc_details = "<%=grpc_details&&'true'%>"; grpc_details = grpc_details == '' ? null : grpc_details;
+	var grpc_pets = "<%=grpc_pets&&'true'%>"; grpc_pets = grpc_pets == '' ? null : grpc_pets;
+	console.log("grpc_details", grpc_details);
+	console.log("grpc_pets", grpc_pets);
+</script>
+<script>
+	$(document).ready(function () {
+    	console.log("Document ready");
+    	const base_url = window.location.href.split('?')[0];
+    	let query = { breed_id: '<%=details.id%>' };
+    	if (grpc_pets) query['grpc_pets'] = 'true';
+    	if (grpc_details) query['grpc_details'] = 'true';
+    	console.log("Query", query);
+    	$("#pets_http").click(() => window.location.href = base_url + '?' + new URLSearchParams(function () { let { grpc_pets, ...rest } = query; return rest }()) + "#footer");
+    	$("#pets_grpc").click(() => window.location.href = base_url + '?' + new URLSearchParams({ ...query, grpc_pets: 'true' }) + "#footer");
+    	$("#details_http").click(() => window.location.href = base_url + '?' + new URLSearchParams(function () { let { grpc_details, ...rest } = query; return rest }()) + "#footer");
+    	$("#details_grpc").click(() => window.location.href = base_url + '?' + new URLSearchParams({ ...query, grpc_details: 'true' }) + "#footer");
+	})
+</script>
+<script>
+	$("#reset-local-storage").click(function () {
+    	["cat_v1", "pets_v2", "pets_v3", "details_v1", "details_v2"].forEach((item) => localStorage.setItem(item, 0));
+    	location.reload();
+	});
+
+	$(document).ready(function () {
+
+    	let pets_version = "<%=pets_version%>";
+    	let details_version = "<%=details_version%>";
+
+    	switch (pets_version) {
+        	case "V1": localStorage.setItem('pets_v1', parseInt(localStorage.getItem('pets_v1') || 0) + 1); break;
+        	case "V2": localStorage.setItem('pets_v2', parseInt(localStorage.getItem('pets_v2') || 0) + 1); break;
+        	case "V3": localStorage.setItem('pets_v3', parseInt(localStorage.getItem('pets_v3') || 0) + 1); break;
+    	}
+
+    	switch (details_version) {
+        	case "V1": localStorage.setItem('details_v1', parseInt(localStorage.getItem('details_v1') || 0) + 1); break;
+        	case "V2": localStorage.setItem('details_v2', parseInt(localStorage.getItem('details_v2') || 0) + 1); break;
+    	}
+
+    	localStorage.setItem('total_request', parseInt(localStorage.getItem('total_request') || 0) + 1);
+
+    	let pets_v1 = localStorage.getItem('pets_v1') || 0, pets_v2 = localStorage.getItem('pets_v2') || 0, pets_v3 = localStorage.getItem('pets_v3') || 0;
+    	let details_v1 = localStorage.getItem('details_v1') || 0, details_v2 = localStorage.getItem('details_v2') || 0;
+    	let total = localStorage.getItem('total_request') || 0;
+    	let pets_tooltip_title = `
+    	V1: ${pets_v1}, ${(pets_v1 / total * 100).toFixed(1)}% </br>
+    	V2: ${pets_v2}, ${(pets_v2 / total * 100).toFixed(1)}% </br>
+    	V3: ${pets_v3}, ${(pets_v3 / total * 100).toFixed(1)}% </br>
+    	Total : ${total}`
+        	,
+        	details_tooltip_title = `V1: ${details_v1}, ${(details_v1 / total * 100).toFixed(1)}% </br>
+    	V2: ${details_v2}, ${(details_v2 / total * 100).toFixed(1)}% </br>
+    	Total: ${total}`;
+
+    	new bootstrap.Tooltip($("#pets_tooltip"), { title: pets_tooltip_title, html: true });
+    	new bootstrap.Tooltip($("#details_tooltip"), { title: details_tooltip_title, html: true });
+	})
+
+
+</script>
+
+
+</html>
